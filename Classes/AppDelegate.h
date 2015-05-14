@@ -8,7 +8,7 @@
  * maximum fps for desktop targets
  * mobile targets are vsync enabled
  */
-#define FPS_MAX 160
+#define FPS_MAX 300
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
     #define CC_PLATFORM_DESKTOP 1
