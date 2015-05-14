@@ -1,40 +1,38 @@
+
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
 
 /**
-@brief    The cocos2d Application.
+ * maximum fps for desktop targets
+ * mobile targets are vsync enabled
+ */
+#define FPS_MAX 160
 
-The reason for implement as private inheritance is to hide some interface call by Director.
-*/
-class  AppDelegate : private cocos2d::Application
-{
-public:
-    AppDelegate();
-    virtual ~AppDelegate();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+    #define CC_PLATFORM_DESKTOP 1
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    #define CC_PLATFORM_DESKTOP 1
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+    #define CC_PLATFORM_DESKTOP 1
+#endif
 
-    virtual void initGLContextAttrs();
+namespace neko {
 
-    /**
-    @brief    Implement Director and Scene init code here.
-    @return true    Initialize success, app continue.
-    @return false   Initialize failed, app terminate.
-    */
-    virtual bool applicationDidFinishLaunching();
+    class  AppDelegate : private cocos2d::Application
+    {
+        public:
 
-    /**
-    @brief  The function be called when the application enter background
-    @param  the pointer of the application
-    */
-    virtual void applicationDidEnterBackground();
+        AppDelegate();
+        virtual ~AppDelegate();
+        virtual void initGLContextAttrs();
+        virtual bool applicationDidFinishLaunching();
+        virtual void applicationDidEnterBackground();
+        virtual void applicationWillEnterForeground();
 
-    /**
-    @brief  The function be called when the application enter foreground
-    @param  the pointer of the application
-    */
-    virtual void applicationWillEnterForeground();
-};
+    };
+
+}
 
 #endif // _APP_DELEGATE_H_
-

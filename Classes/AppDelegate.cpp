@@ -1,72 +1,79 @@
+
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
-USING_NS_CC;
+using namespace cocos2d;
 
-AppDelegate::AppDelegate() {
+namespace neko {
 
-}
-
-AppDelegate::~AppDelegate() 
-{
-}
-
-//if you want a different context,just modify the value of glContextAttrs
-//it will takes effect on all platforms
-void AppDelegate::initGLContextAttrs()
-{
-    //set OpenGL context attributions,now can only set six attributions:
-    //red,green,blue,alpha,depth,stencil
-    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
-
-    GLView::setGLContextAttrs(glContextAttrs);
-}
-
-// If you want to use packages manager to install more packages, 
-// don't modify or remove this function
-static int register_all_packages()
-{
-    return 0; //flag for packages manager
-}
-
-bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
-    auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
-        glview = GLViewImpl::create("neko-platformer");
-        director->setOpenGLView(glview);
+     AppDelegate::AppDelegate() {
+        /**
+         * construct
+         */
     }
 
-    // turn on display FPS
-    director->setDisplayStats(true);
+    AppDelegate::~AppDelegate() {
+        /**
+         * destruct
+         */
+    }
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    void AppDelegate::initGLContextAttrs() {
+        GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+        GLView::setGLContextAttrs(glContextAttrs);
+    }
 
-    register_all_packages();
+    static int register_all_packages() {
+        return 0;
+    }
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    /**
+     * setup / init starting scene
+     */
+    bool AppDelegate::applicationDidFinishLaunching() {
+        auto director = Director::getInstance();
+        auto glview = director->getOpenGLView();
 
-    // run
-    director->runWithScene(scene);
+        if (!glview) {
+            glview = GLViewImpl::create("neko-platformer");
+            director->setOpenGLView(glview);
+        }
 
-    return true;
-}
+        /**
+         * display fps @ debug
+         */
+        #ifdef COCOS2D_DEBUG
+        director->setDisplayStats(true);
+        #endif
 
-// This function will be called when the app is inactive. When comes a phone call,it's be invoked too
-void AppDelegate::applicationDidEnterBackground() {
-    Director::getInstance()->stopAnimation();
+        /**
+         * fps_max default 1.0 / 60
+         */
+        #ifdef CC_PLATFORM_DESKTOP
+        director->setAnimationInterval(1.0 / FPS_MAX);
+        #endif
 
-    // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-}
+        register_all_packages();
+        auto scene = HelloWorld::createScene();
+        director->runWithScene(scene);
 
-// this function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground() {
-    Director::getInstance()->startAnimation();
+        return true;
+    }
 
-    // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    /**
+     * handle inactive window
+     * pause game/animation/sound?
+     */
+    void AppDelegate::applicationDidEnterBackground() {
+        Director::getInstance()->stopAnimation();
+    }
+
+    /**
+     * handle reactivated window
+     * resume game/animation/sound?
+     */
+    void AppDelegate::applicationWillEnterForeground() {
+        Director::getInstance()->startAnimation();
+    }
+
 }

@@ -1,11 +1,12 @@
-#include "../Classes/AppDelegate.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <string>
+#include "../Classes/AppDelegate.h"
 
-USING_NS_CC;
+using namespace cocos2d;
+using namespace neko;
 
 int main(int argc, char **argv)
 {

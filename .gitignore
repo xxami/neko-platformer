@@ -1,2 +1,4 @@
 bin/
 linux-build/
+*.glue
+
