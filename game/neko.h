@@ -1,7 +1,6 @@
 
-#ifndef _NEKO_NEKO_H_ // lol
-#define _NEKO_NEKO_H_
-
+#ifndef _neko_neko_h// lol
+#define _neko_neko_h
 #include "anticaps.h"
 
 #if (cc_target_platform == cc_platform_win32)
@@ -12,4 +11,4 @@
     #define cc_platform_desktop 1
 #endif
 
-#endif // _NEKO_NEKO_H_
+#endif // _neko_neko_h

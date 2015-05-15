@@ -1,6 +1,6 @@
 
-#ifndef _NEKO_ANTICAPS_H_
-#define _NEKO_ANTICAPS_H_
+#ifndef _neko_anticaps_h
+#define _neko_anticaps_h
 
 /**
  * CC_PLATFORM* > cc_platform*
@@ -66,4 +66,4 @@ static __TYPE__* create() \
     } \
 }
 
-#endif // _NEKO_ANTICAPS_H
+#endif // _neko_anticaps_h
