@@ -58,7 +58,7 @@ namespace neko {
         #endif
 
         register_all_packages();
-        auto scene = HelloWorld::createScene();
+        auto scene = IntroScene::createScene();
         director->runWithScene(scene);
 
         return true;

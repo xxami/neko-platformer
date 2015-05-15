@@ -1,6 +1,7 @@
 
 #ifndef _neko_neko_h// lol
 #define _neko_neko_h
+#include "cocos2d.h"
 #include "anticaps.h"
 
 #if (cc_target_platform == cc_platform_win32)

@@ -3,21 +3,20 @@
 #define _neko_scene_start_h_
 
 #include "cocos2d.h"
+#include "neko.h"
 
-class HelloWorld : public cocos2d::Layer
-{
-public:
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+namespace neko {
 
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();
-    
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
-    // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
-};
+	class IntroScene : public cocos2d::Layer
+	{
+		public:
+	    
+	    static cocos2d::Scene* createScene();
+	    virtual bool init();
+	    
+	    cc_createfunc(IntroScene);
+	};
+
+}
 
 #endif // _neko_scene_start_h_
