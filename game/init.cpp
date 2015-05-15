@@ -3,6 +3,8 @@
 #include "init.h"
 #include "scene_start.h"
 
+#define fps_max 300
+
 using namespace cocos2d;
 
 namespace neko {
@@ -50,9 +52,9 @@ namespace neko {
         /**
          * fps_max default 1.0 / 60
          */
-        #ifdef CC_PLATFORM_DESKTOP
-        cc_log("set fps_max to %d", FPS_MAX);
-        director->setAnimationInterval(1.0 / FPS_MAX);
+        #ifdef cc_platform_desktop
+        cc_log("set fps_max to %d", fps_max);
+        director->setAnimationInterval(1.0 / fps_max);
         #endif
 
         register_all_packages();
