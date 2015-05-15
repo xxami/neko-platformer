@@ -1,6 +1,6 @@
 
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
+#ifndef _neko_scene_start_h_
+#define _neko_scene_start_h_
 
 #include "cocos2d.h"
 
@@ -20,4 +20,4 @@ public:
     CREATE_FUNC(HelloWorld);
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif // _neko_scene_start_h_
