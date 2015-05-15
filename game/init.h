@@ -1,6 +1,6 @@
 
-#ifndef  _APP_DELEGATE_H_
-#define  _APP_DELEGATE_H_
+#ifndef  _NEKO_INIT_H_
+#define  _NEKO_INIT_H_
 
 #include "cocos2d.h"
 
@@ -20,12 +20,13 @@
 
 namespace neko {
 
-    class  AppDelegate : private cocos2d::Application
+    class  NekoPlatformer : private cocos2d::Application
     {
         public:
 
-        AppDelegate();
-        virtual ~AppDelegate();
+        NekoPlatformer();
+        virtual ~NekoPlatformer();
+        
         virtual void initGLContextAttrs();
         virtual bool applicationDidFinishLaunching();
         virtual void applicationDidEnterBackground();
@@ -35,4 +36,4 @@ namespace neko {
 
 }
 
-#endif // _APP_DELEGATE_H_
+#endif // _NEKO_INIT_H_

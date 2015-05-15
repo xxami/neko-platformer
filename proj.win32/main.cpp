@@ -1,5 +1,6 @@
+
 #include "main.h"
-#include "AppDelegate.h"
+#include "init.h"
 #include "cocos2d.h"
 
 using namespace cocos2d;
@@ -13,7 +14,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // create the application instance
-    AppDelegate app;
+    NekoPlatformer app;
     return Application::getInstance()->run();
 }

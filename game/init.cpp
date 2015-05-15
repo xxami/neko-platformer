@@ -1,24 +1,25 @@
 
-#include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "neko.h"
+#include "init.h"
+#include "scene_start.h"
 
 using namespace cocos2d;
 
 namespace neko {
 
-     AppDelegate::AppDelegate() {
+     NekoPlatformer::NekoPlatformer() {
         /**
          * construct
          */
     }
 
-    AppDelegate::~AppDelegate() {
+    NekoPlatformer::~NekoPlatformer() {
         /**
          * destruct
          */
     }
 
-    void AppDelegate::initGLContextAttrs() {
+    void NekoPlatformer::initGLContextAttrs() {
         GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
         GLView::setGLContextAttrs(glContextAttrs);
     }
@@ -30,7 +31,7 @@ namespace neko {
     /**
      * setup / init starting scene
      */
-    bool AppDelegate::applicationDidFinishLaunching() {
+    bool NekoPlatformer::applicationDidFinishLaunching() {
         auto director = Director::getInstance();
         auto glview = director->getOpenGLView();
 
@@ -50,6 +51,7 @@ namespace neko {
          * fps_max default 1.0 / 60
          */
         #ifdef CC_PLATFORM_DESKTOP
+        cc_log("set fps_max to %d", FPS_MAX);
         director->setAnimationInterval(1.0 / FPS_MAX);
         #endif
 
@@ -64,7 +66,7 @@ namespace neko {
      * handle inactive window
      * pause game/animation/sound?
      */
-    void AppDelegate::applicationDidEnterBackground() {
+    void NekoPlatformer::applicationDidEnterBackground() {
         Director::getInstance()->stopAnimation();
     }
 
@@ -72,7 +74,7 @@ namespace neko {
      * handle reactivated window
      * resume game/animation/sound?
      */
-    void AppDelegate::applicationWillEnterForeground() {
+    void NekoPlatformer::applicationWillEnterForeground() {
         Director::getInstance()->startAnimation();
     }
 
