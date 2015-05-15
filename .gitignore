@@ -1,4 +1,8 @@
 bin/
 linux-build/
 *.glue
-
+*/Debug.win32/*
+*.opensdf
+*.sdf
+*.aps
+*.suo
