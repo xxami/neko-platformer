@@ -3,6 +3,13 @@
 #define _neko_anticaps_h
 
 /**
+ * COCOS2D_DEBUG > cc_debug
+ */
+#ifdef COCOS2D_DEBUG
+	#define cc_debug
+#endif
+
+/**
  * CC_PLATFORM* > cc_platform*
  */
 #define cc_platform_win32 CC_PLATFORM_WIN32
