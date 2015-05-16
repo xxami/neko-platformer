@@ -2,7 +2,7 @@
 #ifndef  _neko_init_h_
 #define  _neko_init_h_
 
-#include "cocos2d.h"
+#include "neko.h"
 
 namespace neko {
 

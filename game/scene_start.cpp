@@ -1,4 +1,5 @@
 
+#include "neko.h"
 #include "scene_start.h"
 
 namespace neko {
@@ -14,20 +15,35 @@ namespace neko {
 
     bool IntroScene::init()
     {
-        if (!Layer::init()) {
-            return false;
-        }
-        
-        /*Size visibleSize = Director::getInstance()->getVisibleSize();
-        Vec2 origin = Director::getInstance()->getVisibleOrigin();        
-        auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-            origin.y + visibleSize.height - label->getContentSize().height));
-        this->addChild(label, 1);*/
+        if (!super::init()) return false;
 
-        this->game = RenderTexture::create(neko_game_width, neko_game_height,
+        this->render_game = RenderTexture::create(Neko::game_width, Neko::game_height,
             Texture2D::PixelFormat::RGBA8888);
+        this->render_game->begin();
 
+        /**
+         * offscreen render
+         */
+        this->title_bkg = Sprite::create("sprites/static/golden-boy.png");
+        this->title_bkg->setPosition(Vec2(Neko::game_width / 2,
+            Neko::game_height / 2));
+        this->title_bkg->visit();
+
+
+        this->render_game->end();
+        this->render_game->getSprite()->getTexture()->setAliasTexParameters();
+
+        /**
+         * onscreen render
+         */
+        Sprite *render_screen = Sprite::createWithTexture(
+            this->render_game->getSprite()->getTexture());
+        render_screen->setFlippedX(false);
+        render_screen->setFlippedY(true);
+        render_screen->setScale(Neko::game_scale, Neko::game_scale);
+        render_screen->setPosition(Vec2(Neko::screen_width / 2,
+            Neko::screen_height / 2));
+        this->addChild(render_screen);
         return true;
     }
 

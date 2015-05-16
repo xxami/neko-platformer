@@ -114,12 +114,15 @@ include_directories(
 )
 
 set(GAME_SRC
+  game/neko.cpp
   game/init.cpp
   game/scene_start.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
 set(GAME_HEADERS
+  game/neko.h
+  game/anticaps.h
   game/init.h
   game/scene_start.h
   ${PLATFORM_SPECIFIC_HEADERS}

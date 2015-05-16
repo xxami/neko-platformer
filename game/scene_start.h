@@ -2,22 +2,28 @@
 #ifndef _neko_scene_start_h_
 #define _neko_scene_start_h_
 
-#include "cocos2d.h"
 #include "neko.h"
 
 namespace neko {
 
 	using namespace cocos2d;
 
-	class IntroScene : public cocos2d::Layer
+	class IntroScene : public Layer
 	{
 		private:
+
+		typedef IntroScene self;
+		typedef Layer super;
 
 		/**
 		 * offscreen texture used to render game
 		 * before upscaling to higher resolutions
 		 */
-		RenderTexture *game;
+		RenderTexture *render_game;
+
+		Sprite *title_bkg;
+
+		Sprite *menu_bkg;
 
 		public:
 	    

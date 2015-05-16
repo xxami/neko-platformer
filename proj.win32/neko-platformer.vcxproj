@@ -139,11 +139,14 @@ xcopy "$(ProjectDir)..\game\res" "$(OutDir)" /D /E /I /F /Y</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\game\neko.cpp" />
     <ClCompile Include="..\game\init.cpp" />
     <ClCompile Include="..\game\scene_start.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\game\neko.h" />
+    <ClInclude Include="..\game\anticaps.h" />
     <ClInclude Include="..\game\init.h" />
     <ClInclude Include="..\game\scene_start.h" />
     <ClInclude Include="main.h" />
