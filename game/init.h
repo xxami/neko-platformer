@@ -6,6 +6,8 @@
 
 namespace neko {
 
+    using namespace cocos2d;
+
     class  NekoPlatformer : private cocos2d::Application
     {
         public:

@@ -7,13 +7,27 @@
 
 namespace neko {
 
+	using namespace cocos2d;
+
 	class IntroScene : public cocos2d::Layer
 	{
+		private:
+
+		/**
+		 * offscreen texture used to render game
+		 * before upscaling to higher resolutions
+		 */
+		RenderTexture *game;
+
 		public:
 	    
-	    static cocos2d::Scene* createScene();
-	    virtual bool init();
+	    /**
+	     * scene setup
+	     */
+	    static Scene* createScene();
 	    
+	    virtual bool init();
+
 	    cc_createfunc(IntroScene);
 	};
 

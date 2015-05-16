@@ -5,29 +5,18 @@
 
 #define fps_max 300
 
-using namespace cocos2d;
-
 namespace neko {
 
-     NekoPlatformer::NekoPlatformer() {
-        /**
-         * construct
-         */
-    }
+    using namespace cocos2d;
 
-    NekoPlatformer::~NekoPlatformer() {
-        /**
-         * destruct
-         */
-    }
+    empty_constructor(NekoPlatformer);
+    emptry_destructor(NekoPlatformer);
 
     void NekoPlatformer::initGLContextAttrs() {
-        GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+        GLContextAttrs glContextAttrs = {
+            8, 8, 8, 8, 24, 8,
+        };
         GLView::setGLContextAttrs(glContextAttrs);
-    }
-
-    static int register_all_packages() {
-        return 0;
     }
 
     /**
@@ -45,7 +34,9 @@ namespace neko {
              * no support for fullscreen currently
              */
             #ifdef cc_platform_desktop
-            Size res = Director::getInstance()->getVisibleSize();
+            Size res = glview->getFrameSize();
+            cc_log("glview->getVisibleSize return: %.2fx%.2f", res.width, res.height);
+
             if (res.width > 1920 && res.height > 1080) {
                 cc_log("set resolution to 1920x1080");
                 glview->setFrameSize(1920, 1080);
@@ -78,7 +69,6 @@ namespace neko {
         director->setAnimationInterval(1.0 / fps_max);
         #endif
 
-        register_all_packages();
         auto scene = IntroScene::createScene();
         director->runWithScene(scene);
 
