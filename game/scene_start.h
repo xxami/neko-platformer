@@ -6,19 +6,19 @@
 
 namespace neko {
 
-    using namespace cocos2d;
+    namespace cc = cocos2d;
 
     /**
      * display/manage title intro
      */
-    class Intro : public Layer {
+    class Intro : public cc::Layer {
 
         private:
 
         typedef Intro self;
-        typedef Layer super;
+        typedef cc::Layer super;
 
-        Sprite *title_bkg;
+        cc::Sprite *title_bkg;
 
         public:
 
@@ -31,14 +31,14 @@ namespace neko {
     /**
      * display/manage menu
      */
-    class Menu : public Layer {
+    class Menu : public cc::Layer {
 
         private:
 
         typedef Menu self;
-        typedef Layer super;
+        typedef cc::Layer super;
 
-        Sprite *menu_bkg;
+        cc::Sprite *menu_bkg;
 
         public:
 
@@ -52,19 +52,19 @@ namespace neko {
      * main scene
      * display/contain intro/menu screen
      */
-    class IntroScene : public Layer {
+    class IntroScene : public cc::Layer {
         
         private:
 
         typedef IntroScene self;
-        typedef Layer super;
+        typedef cc::Layer super;
 
         Intro *intro_layer;
         Menu *menu_layer;
 
         public:
         
-        static Scene* createScene();
+        static cc::Scene* createScene();
         
         virtual bool init();
 

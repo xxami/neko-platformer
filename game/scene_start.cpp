@@ -4,7 +4,9 @@
 
 namespace neko {
 
-    using namespace cocos2d;
+    namespace cc = cocos2d;
+
+    using cc::Vec2;
 
     /**
      * Intro
@@ -12,7 +14,7 @@ namespace neko {
 
     bool Intro::init() {
         if (!super::init()) return false;
-        this->title_bkg = Sprite::create("sprites/static/peach-boy.png");
+        this->title_bkg = cc::Sprite::create("sprites/static/peach-boy.png");
         this->title_bkg->setPosition(Vec2(Neko::screen_width / 2,
             Neko::screen_height / 2));
         this->title_bkg->getTexture()->setAliasTexParameters();
@@ -28,7 +30,8 @@ namespace neko {
 
     bool Menu::init() {
         if (!super::init()) return false;
-        this->menu_bkg = Sprite::create("sprites/static/peach-boy-menu.png");
+
+        this->menu_bkg = cc::Sprite::create("sprites/static/peach-boy-menu.png");
         this->menu_bkg->setPosition(Vec2(Neko::screen_width / 2,
             Neko::screen_height / 2));
         this->menu_bkg->getTexture()->setAliasTexParameters();
@@ -42,8 +45,8 @@ namespace neko {
      * IntroScene
      */
 
-    Scene* IntroScene::createScene() {
-        auto scene = Scene::create();
+    cc::Scene* IntroScene::createScene() {
+        auto scene = cc::Scene::create();
         auto layer = self::create();
         scene->addChild(layer);
 
@@ -52,7 +55,6 @@ namespace neko {
 
     bool IntroScene::init() {
         if (!super::init()) return false;
-
         
         this->intro_layer = Intro::create();
         this->intro_layer->setCascadeOpacityEnabled(true);
@@ -66,15 +68,15 @@ namespace neko {
         this->addChild(this->intro_layer, 2);
         this->addChild(this->menu_layer, 1);
 
-        auto title_fade_in = FadeIn::create(1.3f);
-        auto menu_fade_in = FadeIn::create(1.3f);
-        auto title_fade_out = FadeOut::create(2.3f);
+        auto title_fade_in = cc::FadeIn::create(1.3f);
+        auto menu_fade_in = cc::FadeIn::create(1.3f);
+        auto title_fade_out = cc::FadeOut::create(2.3f);
 
         this->intro_layer->runAction(
-            Sequence::create(title_fade_in, title_fade_out, nullptr));
+            cc::Sequence::create(title_fade_in, title_fade_out, nullptr));
 
         this->menu_layer->runAction(
-            Sequence::create(menu_fade_in, nullptr));
+            cc::Sequence::create(menu_fade_in, nullptr));
 
         return true;
     }

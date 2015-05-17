@@ -18,37 +18,37 @@
 
 namespace neko {
 
-	using namespace cocos2d;
+    namespace cc = cocos2d;
 
-	/**
-	 * contain globals
-	 */
-	namespace Neko {
+    /**
+     * contain globals
+     */
+    namespace Neko {
 
-		/**
-		 * resolution of the device screen
-		 */
-		extern int screen_width;
-		extern int screen_height;
+        /**
+         * resolution of the device screen
+         */
+        extern int screen_width;
+        extern int screen_height;
 
-		/**
-		 * resolution of the game/render
-		 */
-		extern int game_width;
-		extern int game_height;
+        /**
+         * resolution of the game/render
+         */
+        extern int game_width;
+        extern int game_height;
 
-		/**
-		 * how much to scale the 640x360
-		 * render texture so it fills the screen
-		 */
-		extern int game_scale;
+        /**
+         * how much to scale the 640x360
+         * render texture so it fills the screen
+         */
+        extern int game_scale;
 
-		/**
-		 * maximum framerate for desktop platforms
-		 */
-		extern int fps_max;
+        /**
+         * maximum framerate for desktop platforms
+         */
+        extern int fps_max;
 
-	};
+    };
 
 }
 

@@ -5,7 +5,7 @@
 
 namespace neko {
 
-    using namespace cocos2d;
+    namespace cc = cocos2d;
 
     empty_constructor(NekoPlatformer);
     emptry_destructor(NekoPlatformer);
@@ -14,18 +14,18 @@ namespace neko {
         GLContextAttrs glContextAttrs = {
             8, 8, 8, 8, 24, 8,
         };
-        GLView::setGLContextAttrs(glContextAttrs);
+        cc::GLView::setGLContextAttrs(glContextAttrs);
     }
 
     /**
      * setup / init starting scene
      */
     bool NekoPlatformer::applicationDidFinishLaunching() {
-        auto director = Director::getInstance();
+        auto director = cc::Director::getInstance();
         auto glview = director->getOpenGLView();
 
         if (!glview) {
-            glview = GLViewImpl::create("neko-platformer");
+            glview = cc::GLViewImpl::create("neko-platformer");
             
             /**
              * todo: glview->setFrameSize()
@@ -60,7 +60,7 @@ namespace neko {
      * pause game/animation/sound?
      */
     void NekoPlatformer::applicationDidEnterBackground() {
-        Director::getInstance()->stopAnimation();
+        cc::Director::getInstance()->stopAnimation();
     }
 
     /**
@@ -68,7 +68,7 @@ namespace neko {
      * resume game/animation/sound?
      */
     void NekoPlatformer::applicationWillEnterForeground() {
-        Director::getInstance()->startAnimation();
+        cc::Director::getInstance()->startAnimation();
     }
 
 }

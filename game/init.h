@@ -6,7 +6,7 @@
 
 namespace neko {
 
-    using namespace cocos2d;
+    namespace cc = cocos2d;
 
     class  NekoPlatformer : private cocos2d::Application
     {
