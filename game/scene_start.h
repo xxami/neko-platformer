@@ -6,71 +6,71 @@
 
 namespace neko {
 
-	using namespace cocos2d;
+    using namespace cocos2d;
 
-	/**
-	 * display/manage title intro
-	 */
-	class Intro : public Layer {
+    /**
+     * display/manage title intro
+     */
+    class Intro : public Layer {
 
-		private:
+        private:
 
-		typedef Intro self;
-		typedef Layer super;
+        typedef Intro self;
+        typedef Layer super;
 
-		Sprite *title_bkg;
+        Sprite *title_bkg;
 
-		public:
+        public:
 
-		virtual bool init();
+        virtual bool init();
 
-		cc_createfunc(Intro);
+        cc_createfunc(Intro);
 
-	};
+    };
 
-	/**
-	 * display/manage menu
-	 */
-	class Menu : public Layer {
+    /**
+     * display/manage menu
+     */
+    class Menu : public Layer {
 
-		private:
+        private:
 
-		typedef Menu self;
-		typedef Layer super;
+        typedef Menu self;
+        typedef Layer super;
 
-		Sprite *menu_bkg;
+        Sprite *menu_bkg;
 
-		public:
+        public:
 
-		virtual bool init();
+        virtual bool init();
 
-		cc_createfunc(Menu);
+        cc_createfunc(Menu);
 
-	};
+    };
 
-	/**
-	 * main scene
-	 * display/contain intro/menu screen
-	 */
-	class IntroScene : public Layer {
-		
-		private:
+    /**
+     * main scene
+     * display/contain intro/menu screen
+     */
+    class IntroScene : public Layer {
+        
+        private:
 
-		typedef IntroScene self;
-		typedef Layer super;
+        typedef IntroScene self;
+        typedef Layer super;
 
-		Intro *intro_layer;
-		Menu *menu_layer;
+        Intro *intro_layer;
+        Menu *menu_layer;
 
-		public:
-	    
-	    static Scene* createScene();
-	    
-	    virtual bool init();
+        public:
+        
+        static Scene* createScene();
+        
+        virtual bool init();
 
-	    cc_createfunc(IntroScene);
+        cc_createfunc(IntroScene);
 
-	};
+    };
 
 }
 

@@ -6,7 +6,7 @@
  * COCOS2D_DEBUG > cc_debug
  */
 #ifdef COCOS2D_DEBUG
-	#define cc_debug
+    #define cc_debug
 #endif
 
 /**
@@ -21,37 +21,37 @@
  * CC_LOG* > cc_log*
  */
 #if (!defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0)
-	#define cc_log(...) do {} while (0)
-	#define cc_loginfo(...) do {} while (0)
-	#define cc_logerror(...) do {} while (0)
-	#define cc_logwarn(...) do {} while (0)
+    #define cc_log(...) do {} while (0)
+    #define cc_loginfo(...) do {} while (0)
+    #define cc_logerror(...) do {} while (0)
+    #define cc_logwarn(...) do {} while (0)
 
 #elif (COCOS2D_DEBUG == 1)
-	#define cc_log(format, ...) cocos2d::log(format, ##__VA_ARGS__)
-	#define cc_loginfo(format,...) cocos2d::log(format, ##__VA_ARGS__)
-	#define cc_logerror(format,...) do {} while (0)
-	#define cc_logwarn(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
+    #define cc_log(format, ...) cocos2d::log(format, ##__VA_ARGS__)
+    #define cc_loginfo(format,...) cocos2d::log(format, ##__VA_ARGS__)
+    #define cc_logerror(format,...) do {} while (0)
+    #define cc_logwarn(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
 
 #elif (COCOS2D_DEBUG > 1)
-	#define cc_log(format, ...) cocos2d::log(format, ##__VA_ARGS__)
-	#define cc_loginfo(format,...) cocos2d::log(format, ##__VA_ARGS__)
-	#define cc_logerror(format,...) cocos2d::log(format, ##__VA_ARGS__)
-	#define cc_logwarn(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
+    #define cc_log(format, ...) cocos2d::log(format, ##__VA_ARGS__)
+    #define cc_loginfo(format,...) cocos2d::log(format, ##__VA_ARGS__)
+    #define cc_logerror(format,...) cocos2d::log(format, ##__VA_ARGS__)
+    #define cc_logwarn(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
 #endif // COCOS2D_DEBUG
 
 /**
  * CC_CALLBACK* > cc_callback*
  */
 #define cc_callback0(__selector__,__target__, ...) \
-	std::bind(&__selector__,__target__, ##__VA_ARGS__)
+    std::bind(&__selector__,__target__, ##__VA_ARGS__)
 #define cc_callback1(__selector__,__target__, ...) \
-	std::bind(&__selector__,__target__, std::placeholders::_1, ##__VA_ARGS__)
+    std::bind(&__selector__,__target__, std::placeholders::_1, ##__VA_ARGS__)
 #define cc_callback2(__selector__,__target__, ...) \
-	std::bind(&__selector__,__target__, std::placeholders::_1, \
-	std::placeholders::_2, ##__VA_ARGS__)
+    std::bind(&__selector__,__target__, std::placeholders::_1, \
+    std::placeholders::_2, ##__VA_ARGS__)
 #define cc_callback3(__selector__,__target__, ...) \
-	std::bind(&__selector__,__target__, std::placeholders::_1, \
-	std::placeholders::_2, std::placeholders::_3, ##__VA_ARGS__)
+    std::bind(&__selector__,__target__, std::placeholders::_1, \
+    std::placeholders::_2, std::placeholders::_3, ##__VA_ARGS__)
 
 /**
  * CREATE_FUNC > cc_createfunc
