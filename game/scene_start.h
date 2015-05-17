@@ -8,33 +8,68 @@ namespace neko {
 
 	using namespace cocos2d;
 
-	class IntroScene : public Layer
-	{
+	/**
+	 * display/manage title intro
+	 */
+	class Intro : public Layer {
+
+		private:
+
+		typedef Intro self;
+		typedef Layer super;
+
+		Sprite *title_bkg;
+
+		public:
+
+		virtual bool init();
+
+		cc_createfunc(Intro);
+
+	};
+
+	/**
+	 * display/manage menu
+	 */
+	class Menu : public Layer {
+
+		private:
+
+		typedef Menu self;
+		typedef Layer super;
+
+		Sprite *menu_bkg;
+
+		public:
+
+		virtual bool init();
+
+		cc_createfunc(Menu);
+
+	};
+
+	/**
+	 * main scene
+	 * display/contain intro/menu screen
+	 */
+	class IntroScene : public Layer {
+		
 		private:
 
 		typedef IntroScene self;
 		typedef Layer super;
 
-		/**
-		 * offscreen texture used to render game
-		 * before upscaling to higher resolutions
-		 */
-		RenderTexture *render_game;
-
-		Sprite *title_bkg;
-
-		Sprite *menu_bkg;
+		Intro *intro_layer;
+		Menu *menu_layer;
 
 		public:
 	    
-	    /**
-	     * scene setup
-	     */
 	    static Scene* createScene();
 	    
 	    virtual bool init();
 
 	    cc_createfunc(IntroScene);
+
 	};
 
 }

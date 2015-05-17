@@ -13,8 +13,8 @@ namespace neko {
 		/**
 		 * resolution of the device screen
 		 */
-		int screen_width = 1920;
-		int screen_height = 1080;
+		int screen_width = 640;
+		int screen_height = 360;
 
 		/**
 		 * resolution of the game/render
@@ -26,7 +26,7 @@ namespace neko {
 		 * how much to scale the 640x360
 		 * render texture so it fills the screen
 		 */
-		int game_scale = 3;
+		int game_scale = 1;
 
 		/**
 		 * maximum framerate for desktop platforms
