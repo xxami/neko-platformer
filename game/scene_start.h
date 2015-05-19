@@ -42,6 +42,10 @@ namespace neko {
 
         public:
 
+        void cb_menu_item_play(cc::Ref *s);
+
+        void cb_menu_item_settings(cc::Ref *s);
+
         virtual bool init();
 
         cc_createfunc(Menu);

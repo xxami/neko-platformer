@@ -38,25 +38,40 @@ namespace neko {
         this->menu_bkg->setScale(Neko::game_scale, Neko::game_scale);
         this->addChild(this->menu_bkg);
 
-        auto menu_item_play = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
+        auto label_play = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Play");
-        menu_item_play->setPosition(Vec2(neko_remap2(Neko::game_width / 2,
-            (Neko::game_height / 2) + 30)));
-        menu_item_play->getTexture()->setAliasTexParameters();
+        label_play->getTexture()->setAliasTexParameters();
+        auto menu_item_play = cc::MenuItemLabel::create(label_play,
+            cc_callback1(Menu::cb_menu_item_play, this));
         menu_item_play->setScale(neko_remap(2.0f));
 
-        this->addChild(menu_item_play);
-
-        auto menu_item_settings = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
+        auto label_settings = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Settings");
-        menu_item_settings->setPosition(Vec2(neko_remap2(Neko::game_width / 2,
-            (Neko::game_height / 2) - 30)));
-        menu_item_settings->getTexture()->setAliasTexParameters();
+        label_settings->getTexture()->setAliasTexParameters();
+        auto menu_item_settings = cc::MenuItemLabel::create(label_settings,
+            cc_callback1(Menu::cb_menu_item_settings, this));
         menu_item_settings->setScale(neko_remap(2.0f));
 
-        this->addChild(menu_item_settings);
+
+        auto menu = cc::Menu::create(menu_item_play, menu_item_settings, nullptr);
+        menu->alignItemsVertically();
+
+        auto pos = menu_item_play->getPosition();
+        menu_item_play->setPosition(Vec2(pos.x, pos.y + (neko_remap(10))));
+        pos = menu_item_settings->getPosition();
+        menu_item_settings->setPosition(Vec2(pos.x, pos.y - (neko_remap(10))));
+
+        this->addChild(menu);
 
         return true;
+    }
+
+    void Menu::cb_menu_item_play(cc::Ref *s) {
+        cc_log("meow 1");
+    }
+
+    void Menu::cb_menu_item_settings(cc::Ref *s) {
+        cc_log("meow 2");
     }
 
     /**
