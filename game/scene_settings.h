@@ -19,6 +19,25 @@ namespace neko {
         typedef SettingsScene self;
         typedef cc::Layer super;
 
+        /**
+         * reference everything for redraw()
+         */
+        cc::Sprite *menu_bkg;
+        cc::Label *label_back;
+        cc::Label *label_resolution;
+        cc::MenuItemLabel *menu_item_back;
+        cc::MenuItemLabel *menu_item_resolution;
+        cc::Menu *menu;
+
+        void cb_menu_item_back(cc::Ref *s);
+
+        void cb_menu_item_resolution(cc::Ref *s);
+
+        /**
+         * refresh resolution dependant sections
+         */
+        void refresh_scale();
+
         public:
         
         static cc::Scene* create_scene();

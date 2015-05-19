@@ -40,11 +40,11 @@ namespace neko {
 
         cc::Sprite *menu_bkg;
 
-        public:
-
         void cb_menu_item_play(cc::Ref *s);
 
         void cb_menu_item_settings(cc::Ref *s);
+
+        public:
 
         virtual bool init();
 
