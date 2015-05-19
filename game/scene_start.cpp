@@ -78,7 +78,10 @@ namespace neko {
     }
 
     void Menu::cb_menu_item_settings(cc::Ref *s) {
-        cc::Director::getInstance()->pushScene(
+        /**
+         * not pushed because resolution may change
+         */
+        cc::Director::getInstance()->replaceScene(
             SettingsScene::create_scene());
     }
 
