@@ -1,6 +1,7 @@
 
 #include "neko.h"
 #include "scene_start.h"
+#include "scene_game_intro.h"
 
 namespace neko {
 
@@ -67,7 +68,8 @@ namespace neko {
     }
 
     void Menu::cb_menu_item_play(cc::Ref *s) {
-        cc_log("meow 1");
+        cc::Director::getInstance()->replaceScene(
+            GameIntroScene::create_scene());
     }
 
     void Menu::cb_menu_item_settings(cc::Ref *s) {

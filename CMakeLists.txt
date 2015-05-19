@@ -117,6 +117,7 @@ set(GAME_SRC
   game/neko.cpp
   game/init.cpp
   game/scene_start.cpp
+  game/scene_game_intro.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -125,6 +126,7 @@ set(GAME_HEADERS
   game/anticaps.h
   game/init.h
   game/scene_start.h
+  game/scene_game_intro.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 
