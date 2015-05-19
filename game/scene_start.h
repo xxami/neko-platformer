@@ -64,7 +64,7 @@ namespace neko {
 
         public:
         
-        static cc::Scene* createScene();
+        static cc::Scene* create_scene();
         
         virtual bool init();
 

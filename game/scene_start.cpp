@@ -38,14 +38,23 @@ namespace neko {
         this->menu_bkg->setScale(Neko::game_scale, Neko::game_scale);
         this->addChild(this->menu_bkg);
 
-        auto test_item = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
+        auto menu_item_play = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Play");
-        test_item->setPosition(Vec2(Neko::screen_width / 2,
-            Neko::screen_height / 2));
-        test_item->getTexture()->setAliasTexParameters();
-        test_item->setScale(2.0f * Neko::game_scale);
-        this->addChild(test_item);
+        menu_item_play->setPosition(Vec2(neko_remap2(Neko::game_width / 2,
+            (Neko::game_height / 2) + 30)));
+        menu_item_play->getTexture()->setAliasTexParameters();
+        menu_item_play->setScale(neko_remap(2.0f));
 
+        this->addChild(menu_item_play);
+
+        auto menu_item_settings = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
+            "Settings");
+        menu_item_settings->setPosition(Vec2(neko_remap2(Neko::game_width / 2,
+            (Neko::game_height / 2) - 30)));
+        menu_item_settings->getTexture()->setAliasTexParameters();
+        menu_item_settings->setScale(neko_remap(2.0f));
+
+        this->addChild(menu_item_settings);
 
         return true;
     }
@@ -54,7 +63,7 @@ namespace neko {
      * IntroScene
      */
 
-    cc::Scene* IntroScene::createScene() {
+    cc::Scene* IntroScene::create_scene() {
         auto scene = cc::Scene::create();
         auto layer = self::create();
         scene->addChild(layer);
@@ -77,18 +86,13 @@ namespace neko {
         this->addChild(this->intro_layer, 2);
         this->addChild(this->menu_layer, 1);
 
-        auto title_fade_in = cc::FadeIn::create(1.3f);
-        auto title_fade_out = cc::FadeOut::create(2.3f);
-
-        auto menu_enter = cc::CallFunc::create([&s = this->menu_layer]() {
-            //auto menu_fade_in = cc::FadeIn::create(1.3f);
-            //s->runAction(menu_fade_in);
-            s->setOpacity(255);
+        auto menu_enter = cc::CallFunc::create([this] () {
+            this->menu_layer->setOpacity(255);
         });
 
-        this->intro_layer->runAction(
-            cc::Sequence::create(title_fade_in, menu_enter,
-                title_fade_out, nullptr));
+        this->intro_layer->runAction(cc::Sequence::create(
+            cc::FadeIn::create(1.3f), cc::DelayTime::create(0.5f),
+            menu_enter, cc::FadeOut::create(2.3f), nullptr));
 
         return true;
     }

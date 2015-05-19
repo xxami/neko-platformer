@@ -49,7 +49,7 @@ namespace neko {
         director->setAnimationInterval(1.0 / Neko::fps_max);
         #endif
 
-        auto scene = IntroScene::createScene();
+        auto scene = IntroScene::create_scene();
         director->runWithScene(scene);
 
         return true;

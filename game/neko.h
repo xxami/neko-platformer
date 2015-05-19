@@ -16,6 +16,15 @@
     #define cc_platform_desktop 1
 #endif
 
+/**
+ * used to map coordinates and scale values
+ * to the correct value depending on the resolution
+ */
+#define neko_remap(__expr) (__expr) * neko::Neko::game_scale
+#define neko_remap2(__expr1, __expr2) \
+    (__expr1) * neko::Neko::game_scale, \
+    (__expr2) * neko::Neko::game_scale
+
 namespace neko {
 
     namespace cc = cocos2d;
