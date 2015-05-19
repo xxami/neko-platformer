@@ -2,6 +2,7 @@
 #include "neko.h"
 #include "scene_start.h"
 #include "scene_game_intro.h"
+#include "scene_settings.h"
 
 namespace neko {
 
@@ -73,7 +74,8 @@ namespace neko {
     }
 
     void Menu::cb_menu_item_settings(cc::Ref *s) {
-        cc_log("meow 2");
+        cc::Director::getInstance()->pushScene(
+            SettingsScene::create_scene());
     }
 
     /**
