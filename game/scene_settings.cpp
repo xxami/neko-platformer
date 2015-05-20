@@ -26,26 +26,40 @@ namespace neko {
 
         this->menu_bkg = cc::Sprite::create("sprites/static/peach-boy-menu.png");
         this->menu_bkg->getTexture()->setAliasTexParameters();
+        this->menu_bkg->setPosition(Vec2(Neko::screen_width / 2,
+            Neko::screen_height / 2));
+        this->menu_bkg->setScale(Neko::game_scale, Neko::game_scale);
 
         this->label_back = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Back");
         this->label_back->getTexture()->setAliasTexParameters();
+        this->label_back->enableShadow(cc::Color4B(0, 0, 0, 135),
+            cc::Size(0, neko_remap(-1)), 0);
 
         this->menu_item_back = cc::MenuItemLabel::create(this->label_back,
             cc_callback1(SettingsScene::cb_menu_item_back, this));
+        this->menu_item_back->setScale(neko_remap(2.0f));
 
         this->label_resolution = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Resolution: " + std::to_string(Neko::screen_width) + "x" +
             std::to_string(Neko::screen_height));
         this->label_resolution->getTexture()->setAliasTexParameters();
+        this->label_resolution->enableShadow(cc::Color4B(0, 0, 0, 135),
+            cc::Size(0, neko_remap(-1)), 0);
 
         this->menu_item_resolution = cc::MenuItemLabel::create(this->label_resolution,
             cc_callback1(SettingsScene::cb_menu_item_resolution, this));
+        this->menu_item_resolution->setScale(neko_remap(2.0f));
 
         this->menu = cc::Menu::create(this->menu_item_back,
             this->menu_item_resolution, nullptr);
-
-        this->refresh_scale();
+        this->menu->alignItemsVertically();
+        auto pos = this->menu_item_back->getPosition();
+        this->menu_item_back->setPosition(Vec2(pos.x, pos.y + (
+            neko_remap(10))));
+        pos = this->menu_item_resolution->getPosition();
+        this->menu_item_resolution->setPosition(Vec2(pos.x, pos.y - (
+            neko_remap(10))));
 
         this->addChild(this->menu_bkg);
         this->addChild(this->menu);
@@ -89,35 +103,24 @@ namespace neko {
             Neko::game_scale = 1;
             this->menu_item_resolution->setString("Resolution: 640x360");
         }
-        cc::Director::getInstance()->getOpenGLView()->setFrameSize(
-            Neko::screen_width, Neko::screen_height);
+        auto director = cc::Director::getInstance();
+        auto glview = director->getOpenGLView();
+        glview->setFrameSize(Neko::screen_width, Neko::screen_height);
+
+        /**
+         * todo: see if this will cause problems
+         * it seems to fix the scaling on resolution change issue, but
+         * has strange effects when called on init
+         */
+        glview->setDesignResolutionSize(Neko::screen_width, Neko::screen_height,
+            ResolutionPolicy::SHOW_ALL); 
+
+        /**
+         * replace with self scene to work around
+         * scaling issue when resetting resolution
+         */
+        director->replaceScene(SettingsScene::create_scene());
         
-        this->refresh_scale();
-    }
-
-    /**
-     * refresh resolution dependant sections
-     */
-    void SettingsScene::refresh_scale() {
-        this->menu_bkg->setPosition(Vec2(Neko::screen_width / 2,
-            Neko::screen_height / 2));
-        this->menu_bkg->setScale(Neko::game_scale, Neko::game_scale);
-
-        this->label_back->disableEffect(cc::LabelEffect::ALL);
-        this->label_back->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
-        this->menu_item_back->setScale(neko_remap(2.0f));
-
-        this->label_resolution->disableEffect(cc::LabelEffect::ALL);
-        this->label_resolution->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
-        this->menu_item_resolution->setScale(neko_remap(2.0f));
-
-        this->menu->alignItemsVertically();
-        auto pos = this->menu_item_back->getPosition();
-        this->menu_item_back->setPosition(Vec2(pos.x, pos.y + (neko_remap(10))));
-        pos = this->menu_item_resolution->getPosition();
-        this->menu_item_resolution->setPosition(Vec2(pos.x, pos.y - (neko_remap(10))));
     }
 
 }

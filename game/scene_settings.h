@@ -33,11 +33,6 @@ namespace neko {
 
         void cb_menu_item_resolution(cc::Ref *s);
 
-        /**
-         * refresh resolution dependant sections
-         */
-        void refresh_scale();
-
         public:
         
         static cc::Scene* create_scene();
