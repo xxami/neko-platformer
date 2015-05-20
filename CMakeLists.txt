@@ -119,6 +119,7 @@ set(GAME_SRC
   game/scene_start.cpp
   game/scene_game_intro.cpp
   game/scene_settings.cpp
+  game/scene_game.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -129,6 +130,7 @@ set(GAME_HEADERS
   game/scene_start.h
   game/scene_game_intro.h
   game/scene_settings.h
+  game/scene_game.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

@@ -1,6 +1,5 @@
 
 #include "neko.h"
-#include "scene_game_intro.h"
 #include "scene_game.h"
 
 namespace neko {
@@ -13,7 +12,7 @@ namespace neko {
      * GameIntroScene
      */
 
-    cc::Scene* GameIntroScene::create_scene() {
+    cc::Scene* GameScene::create_scene() {
         auto scene = cc::Scene::create();
         auto layer = self::create();
         scene->addChild(layer);
@@ -21,10 +20,9 @@ namespace neko {
         return scene;
     }
 
-    bool GameIntroScene::init() {
+    bool GameScene::init() {
         if (!super::init()) return false;
-        cc::Director::getInstance()->replaceScene(GameScene::create_scene());
-        
+        cc_log("meow");
         return true;
     }
 

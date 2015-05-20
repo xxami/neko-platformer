@@ -1,6 +1,6 @@
 
-#ifndef _neko_scene_game_intro_h_
-#define _neko_scene_game_intro_h_
+#ifndef _neko_scene_game_h_
+#define _neko_scene_game_h_
 
 #include "neko.h"
 
@@ -8,11 +8,11 @@ namespace neko {
 
     namespace cc = cocos2d;
 
-    class GameIntroScene : public cc::Layer {
+    class GameScene : public cc::Layer {
         
         private:
 
-        typedef GameIntroScene self;
+        typedef GameScene self;
         typedef cc::Layer super;
 
         public:
@@ -21,10 +21,10 @@ namespace neko {
         
         virtual bool init();
 
-        cc_createfunc(GameIntroScene);
+        cc_createfunc(GameScene);
 
     };
 
 }
 
-#endif // _neko_scene_game_intro_h_
+#endif // _neko_scene_game_h_
