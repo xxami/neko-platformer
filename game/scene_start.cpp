@@ -42,8 +42,14 @@ namespace neko {
 
         auto label_play = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Play");
+
+        /**
+         * shadows need not be scaled as it will
+         * reflect the font scale
+         */
         label_play->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
+            cc::Size(0, -1), 0);
+
         label_play->getTexture()->setAliasTexParameters();
         auto menu_item_play = cc::MenuItemLabel::create(label_play,
             cc_callback1(Menu::cb_menu_item_play, this));
@@ -51,8 +57,14 @@ namespace neko {
 
         auto label_settings = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Settings");
+
+        /**
+         * shadows need not be scaled as it will
+         * reflect the font scale
+         */
         label_settings->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
+            cc::Size(0, -1), 0);
+        
         label_settings->getTexture()->setAliasTexParameters();
         auto menu_item_settings = cc::MenuItemLabel::create(label_settings,
             cc_callback1(Menu::cb_menu_item_settings, this));
