@@ -33,8 +33,13 @@ namespace neko {
         this->label_back = cc::Label::createWithBMFont("fonts/pixantiqua.fnt",
             "Back");
         this->label_back->getTexture()->setAliasTexParameters();
+
+        /**
+         * shadows need not be scaled as it will
+         * reflect the font scale
+         */
         this->label_back->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
+            cc::Size(0, -1), 0);
 
         this->menu_item_back = cc::MenuItemLabel::create(this->label_back,
             cc_callback1(SettingsScene::cb_menu_item_back, this));
@@ -44,8 +49,13 @@ namespace neko {
             "Resolution: " + std::to_string(Neko::screen_width) + "x" +
             std::to_string(Neko::screen_height));
         this->label_resolution->getTexture()->setAliasTexParameters();
+
+        /**
+         * shadows need not be scaled as it will
+         * reflect the font scale
+         */
         this->label_resolution->enableShadow(cc::Color4B(0, 0, 0, 135),
-            cc::Size(0, neko_remap(-1)), 0);
+            cc::Size(0, -1), 0);
 
         this->menu_item_resolution = cc::MenuItemLabel::create(this->label_resolution,
             cc_callback1(SettingsScene::cb_menu_item_resolution, this));
