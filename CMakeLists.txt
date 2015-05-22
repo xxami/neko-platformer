@@ -131,6 +131,7 @@ set(GAME_HEADERS
   game/scene_game_intro.h
   game/scene_settings.h
   game/scene_game.h
+  game/neko_macros.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

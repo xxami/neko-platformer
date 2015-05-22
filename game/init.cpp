@@ -3,6 +3,10 @@
 #include "init.h"
 #include "scene_start.h"
 
+#if (debug_game_quick)
+    #include "scene_game.h"
+#endif
+
 namespace neko {
 
     namespace cc = cocos2d;
@@ -48,7 +52,12 @@ namespace neko {
         director->setAnimationInterval(1.0 / Neko::fps_max);
         #endif
 
+        #if (debug_game_quick)
+        auto scene = GameScene::create_scene();
+        #else
         auto scene = IntroScene::create_scene();
+        #endif
+
         director->runWithScene(scene);
 
         return true;

@@ -148,8 +148,9 @@ xcopy "$(ProjectDir)..\game\res" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\game\neko.h" />
     <ClInclude Include="..\game\anticaps.h" />
+    <ClInclude Include="..\game\neko_macros.h" />
+    <ClInclude Include="..\game\neko.h" />
     <ClInclude Include="..\game\init.h" />
     <ClInclude Include="..\game\scene_start.h" />
     <ClInclude Include="..\game\scene_game_intro.h" />
