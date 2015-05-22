@@ -4,6 +4,8 @@
 
 #include "neko.h"
 
+#define id_tilemap 1
+
 namespace neko {
 
     namespace cc = cocos2d;

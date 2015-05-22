@@ -23,9 +23,33 @@ namespace neko {
 
     bool GameIntroScene::init() {
         if (!super::init()) return false;
-        cc::Director::getInstance()->replaceScene(GameScene::create_scene());
-        
+        auto listener = cc::EventListenerTouchOneByOne::create();
+        listener->onTouchEnded = cc_callback2(GameIntroScene::cb_touch_end, this);
+
+        /**
+         * unused
+         */
+        listener->onTouchBegan = [](cc::Touch *t, cc::Event *e) {
+            return true;
+        };
+
+        /**
+         * unused
+         */
+        listener->onTouchMoved = [](cc::Touch *t, cc::Event *e) {
+            return;
+        };
+
+        cc_event_dispatch_graphed(listener, this);
         return true;
+    }
+
+    /**
+     * callback for a touch/click on screen - skip intro
+     */
+    void GameIntroScene::cb_touch_end(cc::Touch* touch, cc::Event *e) {
+        cc::Director::getInstance()->replaceScene(
+            GameScene::create_scene());
     }
 
 }

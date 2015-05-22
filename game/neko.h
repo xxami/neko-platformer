@@ -8,6 +8,8 @@
 #define empty_constructor(name) name::name() { }
 #define emptry_destructor(name) name::~name() { }
 
+#define empty {}
+
 #if (cc_target_platform == cc_platform_win32)
     #define cc_platform_desktop 1
 #elif (cc_target_platform == cc_platform_linux)
@@ -15,6 +17,10 @@
 #elif (cc_target_platform == cc_platform_mac)
     #define cc_platform_desktop 1
 #endif
+
+#define cc_event_dispatch_graphed(__expr1, __expr2) \
+    this->_eventDispatcher->addEventListenerWithSceneGraphPriority( \
+    __expr1, __expr2)
 
 /**
  * used to map coordinates and scale values

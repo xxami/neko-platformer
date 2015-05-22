@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="dev-generic" tilewidth="32" tileheight="32">
+  <image source="tilesets/dev-generic.png" width="2048" height="32"/>
+ </tileset>
+ <layer name="test" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6H7ZP+VC51DwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/AWtAw1E=
+  </data>
+ </layer>
+</map>

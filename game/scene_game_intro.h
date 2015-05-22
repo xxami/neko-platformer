@@ -15,6 +15,11 @@ namespace neko {
         typedef GameIntroScene self;
         typedef cc::Layer super;
 
+        /**
+         * callback for a touch/click on screen - skip intro
+         */
+        void cb_touch_end(cc::Touch* touch, cc::Event *e);
+
         public:
         
         static cc::Scene* create_scene();

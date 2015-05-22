@@ -3,6 +3,7 @@
 #include "scene_start.h"
 #include "scene_game_intro.h"
 #include "scene_settings.h"
+#include "scene_game.h"
 
 namespace neko {
 

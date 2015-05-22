@@ -22,7 +22,14 @@ namespace neko {
 
     bool GameScene::init() {
         if (!super::init()) return false;
-        cc_log("meow");
+
+        cc::TMXTiledMap *map;
+        cc::TMXLayer *layer;
+
+        map = cc::TMXTiledMap::create("maps/map.tmx");
+        map->setPosition(Neko::screen_width / 2, Neko::screen_height / 2);
+        this->addChild(map, 0, id_tilemap);
+
         return true;
     }
 
