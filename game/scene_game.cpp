@@ -7,6 +7,8 @@ namespace neko {
     namespace cc = cocos2d;
 
     using cc::Vec2;
+    using cc::experimental::TMXTiledMap;
+    using cc::experimental::TMXLayer;
 
     /**
      * GameIntroScene
@@ -23,14 +25,22 @@ namespace neko {
     bool GameScene::init() {
         if (!super::init()) return false;
 
-        cc::TMXTiledMap *map;
-        cc::TMXLayer *layer;
-
-        map = cc::TMXTiledMap::create("maps/test.tmx");
-        map->setPosition(Neko::screen_width / 2, Neko::screen_height / 2);
-        this->addChild(map, 0, id_tilemap);
+        this->init_map("maps/test.tmx");
 
         return true;
+    }
+
+    /**
+     * load map, objects, init level
+     */
+    void GameScene::init_map(const std::string& map_file) {
+        map = TMXTiledMap::create(map_file);
+        map->setScale(neko_remap(1.0f));
+
+        layer_base = map->getLayer("base");
+        layer_collide = map->getLayer("collisions");
+
+        this->addChild(map, 0, id_tilemap);
     }
 
 }

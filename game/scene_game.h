@@ -10,12 +10,25 @@ namespace neko {
 
     namespace cc = cocos2d;
 
+    using cc::experimental::TMXTiledMap;
+    using cc::experimental::TMXLayer;
+
     class GameScene : public cc::Layer {
         
         private:
 
         typedef GameScene self;
         typedef cc::Layer super;
+
+        TMXTiledMap *map;
+
+        TMXLayer *layer_base;
+        TMXLayer *layer_collide;
+
+        /**
+         * load map, objects, init level
+         */
+        void init_map(const std::string& map_file);
 
         public:
         
