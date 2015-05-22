@@ -23,24 +23,43 @@ namespace neko {
 
     bool GameIntroScene::init() {
         if (!super::init()) return false;
-        auto listener = cc::EventListenerTouchOneByOne::create();
-        listener->onTouchEnded = cc_callback2(GameIntroScene::cb_touch_end, this);
+
+        auto keybd_listener = cc::EventListenerKeyboard::create();
+
+        /**
+         * skip intro when return is pressed
+         */
+        keybd_listener->onKeyReleased = [](cc::EventKeyboard::KeyCode key,
+            cc::Event *e) {
+            if ((int)key == neko_key_return) {
+                cc::Director::getInstance()->replaceScene(
+                    GameScene::create_scene());
+            }
+            else {
+                cc_log("key press - code :: %d", key);
+            }
+        };
+
+        auto touch_listener = cc::EventListenerTouchOneByOne::create();
+        touch_listener->onTouchEnded = cc_callback2(GameIntroScene::cb_touch_end, this);
 
         /**
          * unused
          */
-        listener->onTouchBegan = [](cc::Touch *t, cc::Event *e) {
+        touch_listener->onTouchBegan = [](cc::Touch *t, cc::Event *e) {
             return true;
         };
 
         /**
          * unused
          */
-        listener->onTouchMoved = [](cc::Touch *t, cc::Event *e) {
+        touch_listener->onTouchMoved = [](cc::Touch *t, cc::Event *e) {
             return;
         };
 
-        cc_event_dispatch_graphed(listener, this);
+        cc_event_dispatch_graphed(touch_listener, this);
+        cc_event_dispatch_graphed(keybd_listener, this);
+
         return true;
     }
 

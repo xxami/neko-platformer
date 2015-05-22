@@ -45,7 +45,6 @@ namespace neko {
          * fps_max default 1.0 / 60
          */
         #ifdef cc_platform_desktop
-        cc_log("set fps_max to %d", Neko::fps_max);
         director->setAnimationInterval(1.0 / Neko::fps_max);
         #endif
 

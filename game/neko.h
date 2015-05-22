@@ -31,6 +31,11 @@
     (__expr1) * neko::Neko::game_scale, \
     (__expr2) * neko::Neko::game_scale
 
+/**
+ * neko key constants
+ */
+#define neko_key_return 35
+
 namespace neko {
 
     namespace cc = cocos2d;

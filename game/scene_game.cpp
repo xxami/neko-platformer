@@ -26,7 +26,7 @@ namespace neko {
         cc::TMXTiledMap *map;
         cc::TMXLayer *layer;
 
-        map = cc::TMXTiledMap::create("maps/map.tmx");
+        map = cc::TMXTiledMap::create("maps/test.tmx");
         map->setPosition(Neko::screen_width / 2, Neko::screen_height / 2);
         this->addChild(map, 0, id_tilemap);
 
