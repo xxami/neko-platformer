@@ -12,6 +12,8 @@ namespace neko {
 
     using cc::experimental::TMXTiledMap;
     using cc::experimental::TMXLayer;
+    using cc::Sprite;
+    using cc::SpriteBatchNode;
 
     class GameScene : public cc::Layer {
         
@@ -24,6 +26,9 @@ namespace neko {
 
         TMXLayer *layer_base;
         TMXLayer *layer_collide;
+
+        SpriteBatchNode *player_sprites;
+        Sprite *player;
 
         /**
          * load map, objects, init level

@@ -7,6 +7,8 @@ namespace neko {
     namespace cc = cocos2d;
 
     using cc::Vec2;
+    using cc::Sprite;
+    using cc::SpriteBatchNode;
     using cc::experimental::TMXTiledMap;
     using cc::experimental::TMXLayer;
 
@@ -25,6 +27,11 @@ namespace neko {
     bool GameScene::init() {
         if (!super::init()) return false;
 
+        this->player_sprites = SpriteBatchNode::create("sprites/dev-player.png");
+        cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
+        cache->addSpriteFramesWithFile("sprites/dev-player.plist");
+        cc_log("test");
+        this->player = nullptr;
         this->init_map("maps/test.tmx");
 
         return true;
@@ -52,30 +59,41 @@ namespace neko {
          * add/process valid entity object group data
          */
          cc_log("loading map entity data");
-         bool player_spawn_found = false;
          auto& objects = group->getObjects();
+
          for (auto &obj : objects) {
             auto &properties = obj.asValueMap();
-            if (properties["type"].asString() == "player_start") {
-                if (!player_spawn_found) {
-                    /**
-                     * should spawn player
-                     */
-                    float x = properties["x"].asFloat();
-                    float y = properties["y"].asFloat();
 
-                    cc_log("spawning player :: Vec2(%.0f, %.0f)", x, y);
-                    player_spawn_found = true;
+            if (properties["type"].asString() == "player_start") {
+                if (this->player != nullptr) {
+                    /**
+                     * multiplayer unsupported
+                     */
+                     continue;
                 }
+
                 /**
-                 * multiplayer unsupported
+                 * spawn player at this point
                  */
+                float x = properties["x"].asFloat();
+                float y = properties["y"].asFloat();
+                cc_log("spawning player :: Vec2(%.0f, %.0f)", x, y);
+
+                this->player = Sprite::create("sprites/dev-player.png");
+                this->player->getTexture()->setAliasTexParameters();
+                this->player->setPosition(neko_remap2(x, y));
+                this->player->setScale(neko_remap(1.0f));
+
+                this->addChild(this->player, 1);
             }
+
             /**
              * other entities?
              */
          }
-         cc_assert(player_spawn_found, "no player spawn data found in map");
+
+         cc_assert(this->player != nullptr,
+            "no player spawn data found in map");
     }
 
     /**
