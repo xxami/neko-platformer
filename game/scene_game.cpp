@@ -34,13 +34,25 @@ namespace neko {
      * load map, objects, init level
      */
     void GameScene::init_map(const std::string& map_file) {
-        map = TMXTiledMap::create(map_file);
-        map->setScale(neko_remap(1.0f));
+        cc_log("loading map :: %s", map_file.c_str());
+        this->map = TMXTiledMap::create(map_file);
+        this->map->setScale(neko_remap(1.0f));
+        this->layer_base = map->getLayer("base");
+        this->init_map_collide(map->getLayer("collisions"));
 
-        layer_base = map->getLayer("base");
-        layer_collide = map->getLayer("collisions");
+        this->addChild(this->map, 0, id_tilemap);
+    }
 
-        this->addChild(map, 0, id_tilemap);
+    /**
+     * add collision data from a given layer
+     */
+    void GameScene::init_map_collide(TMXLayer *layer) {
+        cc_assert(layer != nullptr, "no collision data found in map");
+        /**
+         * add/process valid collision layer
+         */
+        this->layer_collide = layer;
+        this->layer_collide->setVisible(false);
     }
 
 }

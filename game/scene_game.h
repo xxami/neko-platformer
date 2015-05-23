@@ -30,6 +30,11 @@ namespace neko {
          */
         void init_map(const std::string& map_file);
 
+        /**
+         * add collision data from a given layer
+         */
+        void init_map_collide(TMXLayer *layer);
+
         public:
         
         static cc::Scene* create_scene();

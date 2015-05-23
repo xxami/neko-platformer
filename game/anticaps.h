@@ -73,4 +73,9 @@ static __TYPE__* create() \
     } \
 }
 
+/**
+ * CCASSERT > cc_asssert
+ */
+#define cc_assert(cond, msg) CCASSERT(cond, msg)
+
 #endif // _neko_anticaps_h
