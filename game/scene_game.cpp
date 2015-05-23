@@ -38,9 +38,44 @@ namespace neko {
         this->map = TMXTiledMap::create(map_file);
         this->map->setScale(neko_remap(1.0f));
         this->layer_base = map->getLayer("base");
+        this->init_map_entities(map->getObjectGroup("entities"));
         this->init_map_collide(map->getLayer("collisions"));
-
         this->addChild(this->map, 0, id_tilemap);
+    }
+
+    /**
+     * add map entity data from a given object group
+     */
+    void GameScene::init_map_entities(cc::TMXObjectGroup *group) {
+        cc_assert(group != nullptr, "no entity data found in map");
+        /**
+         * add/process valid entity object group data
+         */
+         cc_log("loading map entity data");
+         bool player_spawn_found = false;
+         auto& objects = group->getObjects();
+         for (auto &obj : objects) {
+            auto &properties = obj.asValueMap();
+            if (properties["type"].asString() == "player_start") {
+                if (!player_spawn_found) {
+                    /**
+                     * should spawn player
+                     */
+                    float x = properties["x"].asFloat();
+                    float y = properties["y"].asFloat();
+
+                    cc_log("spawning player :: Vec2(%.0f, %.0f)", x, y);
+                    player_spawn_found = true;
+                }
+                /**
+                 * multiplayer unsupported
+                 */
+            }
+            /**
+             * other entities?
+             */
+         }
+         cc_assert(player_spawn_found, "no player spawn data found in map");
     }
 
     /**
@@ -51,6 +86,7 @@ namespace neko {
         /**
          * add/process valid collision layer
          */
+        cc_log("loading map collision data");
         this->layer_collide = layer;
         this->layer_collide->setVisible(false);
     }

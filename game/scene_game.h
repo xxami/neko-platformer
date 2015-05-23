@@ -31,6 +31,11 @@ namespace neko {
         void init_map(const std::string& map_file);
 
         /**
+         * add map entity data from a given object group
+         */
+        void init_map_entities(cc::TMXObjectGroup *group);
+
+        /**
          * add collision data from a given layer
          */
         void init_map_collide(TMXLayer *layer);

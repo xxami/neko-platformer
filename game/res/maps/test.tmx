@@ -14,6 +14,6 @@
   </data>
  </layer>
  <objectgroup name="entities">
-  <object id="6" name="player1" type="player" x="141" y="3054"/>
+  <object id="6" name="player1" type="player_start" x="141" y="3054"/>
  </objectgroup>
 </map>
