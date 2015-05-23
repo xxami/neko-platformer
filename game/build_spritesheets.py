@@ -38,7 +38,8 @@ def gen_sprite_sheet_plist(p_file, img_siz, spr_siz, s_frames):
 
 	res = plist_start
 	res += plist_tex % (img_siz[0], img_siz[1])
-	
+	res += plist_frames_start
+
 	i = 1
 	x = 0
 	y = spr_siz[1]
