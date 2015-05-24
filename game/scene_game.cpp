@@ -29,8 +29,13 @@ namespace neko {
 
         this->player_sprites = SpriteBatchNode::create("sprites/dev-player.png");
         cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
-        cache->addSpriteFramesWithFile("sprites/dev-player.plist");
-        cc_log("test");
+
+        /**
+         * renenver cache is not autoreleased
+         */
+        cache->addSpriteFramesWithFile("sprites/dev-player.plist",
+            "sprites/dev-player.png");
+
         this->player = nullptr;
         this->init_map("maps/test.tmx");
 
@@ -79,12 +84,13 @@ namespace neko {
                 float y = properties["y"].asFloat();
                 cc_log("spawning player :: Vec2(%.0f, %.0f)", x, y);
 
-                this->player = Sprite::create("sprites/dev-player.png");
+                this->player = Sprite::createWithSpriteFrameName("dev-player-1");
+                this->player_sprites->addChild(this->player);
                 this->player->getTexture()->setAliasTexParameters();
                 this->player->setPosition(neko_remap2(x, y));
                 this->player->setScale(neko_remap(1.0f));
 
-                this->addChild(this->player, 1);
+                this->addChild(this->player_sprites, 1);
             }
 
             /**
