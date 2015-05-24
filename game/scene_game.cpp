@@ -39,6 +39,12 @@ namespace neko {
         this->player = nullptr;
         this->init_map("maps/test.tmx");
 
+        auto keybd_listener = cc::EventListenerKeyboard::create();
+        keybd_listener->onKeyPressed = cc_callback2(GameScene::cb_key_down, this);
+        keybd_listener->onKeyReleased = cc_callback2(GameScene::cb_key_up, this);
+
+        cc_event_dispatch_graphed(keybd_listener, this);
+
         return true;
     }
 
@@ -113,6 +119,21 @@ namespace neko {
         cc_log("loading map collision data");
         this->layer_collide = layer;
         this->layer_collide->setVisible(false);
+    }
+
+    /**
+     * on key down event - todo: keyboard manager class
+     */
+    void GameScene::cb_key_down(cc::EventKeyboard::KeyCode code, cc::Event *e) {
+        cc_log("%d", (int)code);
+        if (code == cc_key_a) cc_log("meow");
+    }
+
+    /**
+     * on key release event - todo: keyboard manager class
+     */
+    void GameScene::cb_key_up(cc::EventKeyboard::KeyCode code, cc::Event *e) {
+
     }
 
 }

@@ -31,6 +31,16 @@ namespace neko {
         Sprite *player;
 
         /**
+         * on key down event - todo: keyboard manager class
+         */
+        void cb_key_down(cc::EventKeyboard::KeyCode code, cc::Event *e);
+
+        /**
+         * on key release event - todo: keyboard manager class
+         */
+        void cb_key_up(cc::EventKeyboard::KeyCode code, cc::Event *e);
+
+        /**
          * load map, objects, init level
          */
         void init_map(const std::string& map_file);
