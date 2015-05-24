@@ -31,7 +31,7 @@ namespace neko {
         cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
 
         /**
-         * renenver cache is not autoreleased
+         * remember cache is not autoreleased
          */
         cache->addSpriteFramesWithFile("sprites/dev-player.plist",
             "sprites/dev-player.png");

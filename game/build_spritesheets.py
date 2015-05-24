@@ -45,12 +45,18 @@ def gen_sprite_sheet_plist(p_file, img_siz, spr_siz, s_frames):
 	y = spr_siz[1]
 	base_name = os.path.splitext(os.path.basename(p_file))[0]
 
-	while (x < img_siz[0] and y <= img_siz[1]):
+	while (x < img_siz[0] or y < img_siz[1]):
+		if x >= img_siz[0]:
+			x = 0
+			y+= spr_siz[1]
+
 		res += plist_frame % (base_name + '-%s' % i, x, y - spr_siz[1],
 			spr_siz[0], spr_siz[1], 0, 0, spr_siz[0], spr_siz[1])
 		x += spr_siz[0]
-		if x > img_siz[0]: y+= spr_siz[1]
 		i += 1
+
+		if i > s_frames:
+			break
 
 	res += plist_frames_end
 	res += plist_end
