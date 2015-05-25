@@ -117,6 +117,13 @@ namespace neko {
                 this->player->setPosition(neko_remap2(x, y));
                 this->player->setScale(neko_remap(1.0f));
 
+                /**
+                 * set the player to physics
+                 */
+                auto body = cc::PhysicsBody::createBox(cc::Size(32.0f, 32.0f),
+                    cc::PhysicsMaterial(0.0f, 0.0f, 0.0f));
+                this->player->setPhysicsBody(body);
+
                 this->addChild(this->player_sprites, 1);
             }
 
@@ -140,6 +147,27 @@ namespace neko {
         cc_log("loading map collision data");
         this->layer_collide = layer;
         this->layer_collide->setVisible(false);
+
+        auto siz = this->layer_collide->getLayerSize();
+        for (int x = 0; x < siz.width; x++) {
+            for (int y = 0; y < siz.height; y++) {
+                if (this->layer_collide->getTileGIDAt(Vec2(x, y)) > 0) {
+                    auto pos = this->layer_collide->getPositionAt(Vec2(x, y));
+                    //cc_log("%d, %d -> %.0f, %.0f\n", x, y, pos.x, pos.y);
+
+                    auto box = cc::Node::create();
+                    box->setPosition(Vec2(
+                        pos.x + 16, pos.y + 16));
+                    auto body = cc::PhysicsBody::createBox(cc::Size(
+                        32.0f, 32.0f), cc::PhysicsMaterial(0.0f, 0.0f, 0.0f));
+                    body->setDynamic(false);
+                    box->setPhysicsBody(body);
+
+                    this->addChild(box);
+
+                }
+            }
+        }
     }
 
     /**
