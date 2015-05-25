@@ -33,7 +33,6 @@
 /**
  * cc key constants
  */
-
 #define cc_key_return cc::EventKeyboard::KeyCode::KEY_KP_ENTER
 #define cc_key_enter cc::EventKeyboard::KeyCode::KEY_KP_ENTER
 #define cc_key_w cc::EventKeyboard::KeyCode::KEY_W
@@ -73,3 +72,4 @@
 #define neko_key_tilde 123
 
 #endif // _neko_neko_macros_h
+ 

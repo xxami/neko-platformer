@@ -74,8 +74,34 @@ static __TYPE__* create() \
 }
 
 /**
+ * CREATE_FUNC > cc_createfunc
+ * used to provide init with a pre-required argument
+ */
+#define cc_createfunc1(__type__, __typearg__, __arg__) \
+static __type__* create(__typearg__ __arg__) \
+{ \
+    __type__ *pRet = new(std::nothrow) __type__(); \
+    if (pRet && pRet->init(__arg__)) \
+    { \
+        pRet->autorelease(); \
+        return pRet; \
+    } \
+    else \
+    { \
+        delete pRet; \
+        pRet = NULL; \
+        return NULL; \
+    } \
+}
+
+/**
  * CCASSERT > cc_asssert
  */
 #define cc_assert(cond, msg) CCASSERT(cond, msg)
+
+/**
+ * NULL > null
+ */
+#define null NULL
 
 #endif // _neko_anticaps_h

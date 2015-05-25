@@ -13,19 +13,40 @@ namespace neko {
     using cc::experimental::TMXLayer;
 
     /**
+     * manual create to pass physics object to GameScene::init
+     */
+    GameScene* GameScene::create(cc::PhysicsWorld *pworld) {
+        GameScene *res = new(std::nothrow) GameScene();
+        if (res && res->init(pworld)) {
+            res->autorelease();
+            return res;
+        }
+        else {
+            delete res;
+            res = null;
+            return null;
+        }
+    }
+
+    /**
      * GameIntroScene
      */
 
     cc::Scene* GameScene::create_scene() {
-        auto scene = cc::Scene::create();
-        auto layer = self::create();
+        auto scene = cc::Scene::createWithPhysics();
+        auto layer = self::create(scene->getPhysicsWorld());
         scene->addChild(layer);
 
         return scene;
     }
 
-    bool GameScene::init() {
+    bool GameScene::init(cc::PhysicsWorld *pworld) {
         if (!super::init()) return false;
+
+        this->world = pworld;
+        #ifdef cc_debug
+        this->world->setDebugDrawMask(cc::PhysicsWorld::DEBUGDRAW_ALL);
+        #endif
 
         this->player_sprites = SpriteBatchNode::create("sprites/dev-player.png");
         cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
@@ -38,6 +59,7 @@ namespace neko {
 
         this->player = nullptr;
         this->init_map("maps/test.tmx");
+        this->init_map_collide(this->map->getLayer("collisions"));
 
         auto keybd_listener = cc::EventListenerKeyboard::create();
         keybd_listener->onKeyPressed = cc_callback2(GameScene::cb_key_down, this);
@@ -55,9 +77,8 @@ namespace neko {
         cc_log("loading map :: %s", map_file.c_str());
         this->map = TMXTiledMap::create(map_file);
         this->map->setScale(neko_remap(1.0f));
-        this->layer_base = map->getLayer("base");
-        this->init_map_entities(map->getObjectGroup("entities"));
-        this->init_map_collide(map->getLayer("collisions"));
+        this->layer_base = this->map->getLayer("base");
+        this->init_map_entities(this->map->getObjectGroup("entities"));
         this->addChild(this->map, 0, id_tilemap);
     }
 
