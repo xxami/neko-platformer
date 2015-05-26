@@ -182,7 +182,9 @@ namespace neko {
      * on key release event - todo: keyboard manager class
      */
     void GameScene::cb_key_up(cc::EventKeyboard::KeyCode code, cc::Event *e) {
-
+        if (code == cc_key_space) {
+            this->player->getPhysicsBody()->setVelocity(Vec2(0, 100));
+        }
     }
 
 }
