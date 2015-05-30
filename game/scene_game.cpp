@@ -13,40 +13,19 @@ namespace neko {
     using cc::experimental::TMXLayer;
 
     /**
-     * manual create to pass physics object to GameScene::init
-     */
-    GameScene* GameScene::create(cc::PhysicsWorld *pworld) {
-        GameScene *res = new(std::nothrow) GameScene();
-        if (res && res->init(pworld)) {
-            res->autorelease();
-            return res;
-        }
-        else {
-            delete res;
-            res = null;
-            return null;
-        }
-    }
-
-    /**
      * GameIntroScene
      */
 
     cc::Scene* GameScene::create_scene() {
-        auto scene = cc::Scene::createWithPhysics();
-        auto layer = self::create(scene->getPhysicsWorld());
+        auto scene = cc::Scene::create();
+        auto layer = self::create();
         scene->addChild(layer);
 
         return scene;
     }
 
-    bool GameScene::init(cc::PhysicsWorld *pworld) {
+    bool GameScene::init() {
         if (!super::init()) return false;
-
-        this->world = pworld;
-        #ifdef cc_debug
-        this->world->setDebugDrawMask(cc::PhysicsWorld::DEBUGDRAW_ALL);
-        #endif
 
         this->player_sprites = SpriteBatchNode::create("sprites/dev-player.png");
         cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
@@ -66,8 +45,16 @@ namespace neko {
         keybd_listener->onKeyReleased = cc_callback2(GameScene::cb_key_up, this);
 
         cc_event_dispatch_graphed(keybd_listener, this);
+        this->scheduleUpdate();
 
         return true;
+    }
+
+    /**
+     * update: game loop
+     */
+    void GameScene::update(float delta) {
+        
     }
 
     /**
@@ -156,7 +143,7 @@ namespace neko {
      */
     void GameScene::cb_key_up(cc::EventKeyboard::KeyCode code, cc::Event *e) {
         if (code == cc_key_space) {
-            this->player->getPhysicsBody()->setVelocity(Vec2(0, 100));
+            //
         }
     }
 

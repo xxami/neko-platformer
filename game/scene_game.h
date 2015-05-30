@@ -22,8 +22,6 @@ namespace neko {
         typedef GameScene self;
         typedef cc::Layer super;
 
-        cc::PhysicsWorld *world;
-
         TMXTiledMap *map;
 
         TMXLayer *layer_base;
@@ -31,6 +29,11 @@ namespace neko {
 
         SpriteBatchNode *player_sprites;
         Sprite *player;
+
+        /**
+         * update:game loop
+         */
+        void update(float delta);
 
         /**
          * on key down event - todo: keyboard manager class
@@ -61,9 +64,9 @@ namespace neko {
         
         static cc::Scene* create_scene();
         
-        virtual bool init(cc::PhysicsWorld *pworld);
+        virtual bool init();
 
-        static GameScene* create(cc::PhysicsWorld *pworld);
+        cc_createfunc(GameScene);
 
     };
 
