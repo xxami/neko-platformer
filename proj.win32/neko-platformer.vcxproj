@@ -145,6 +145,7 @@ xcopy "$(ProjectDir)..\game\res" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\game\scene_game_intro.cpp" />
     <ClCompile Include="..\game\scene_settings.cpp" />
     <ClCompile Include="..\game\scene_game.cpp" />
+    <ClCompile Include="..\game\neko_physics.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@ xcopy "$(ProjectDir)..\game\res" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\game\scene_game_intro.h" />
     <ClInclude Include="..\game\scene_settings.h" />
     <ClInclude Include="..\game\scene_game.h" />
+    <ClInclude Include="..\game\neko_physics.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

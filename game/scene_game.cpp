@@ -27,6 +27,8 @@ namespace neko {
     bool GameScene::init() {
         if (!super::init()) return false;
 
+        this->phys = Physics::create();
+
         this->player_sprites = SpriteBatchNode::create("sprites/dev-player.png");
         cc::SpriteFrameCache *cache = cc::SpriteFrameCache::getInstance();
 

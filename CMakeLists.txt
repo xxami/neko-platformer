@@ -120,6 +120,7 @@ set(GAME_SRC
   game/scene_game_intro.cpp
   game/scene_settings.cpp
   game/scene_game.cpp
+  game/neko_physics.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -132,6 +133,7 @@ set(GAME_HEADERS
   game/scene_settings.h
   game/scene_game.h
   game/neko_macros.h
+  game/neko_physics.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

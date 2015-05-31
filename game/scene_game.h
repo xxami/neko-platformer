@@ -3,6 +3,7 @@
 #define _neko_scene_game_h_
 
 #include "neko.h"
+#include "neko_physics.h"
 
 #define id_tilemap 1
 
@@ -29,6 +30,8 @@ namespace neko {
 
         SpriteBatchNode *player_sprites;
         Sprite *player;
+
+        Physics *phys;
 
         /**
          * update:game loop
